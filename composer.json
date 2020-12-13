@@ -1,0 +1,28 @@
+{
+  "name": "php/example",
+  "type" : "project",
+  "description": "This is a sample application for the Phalcon PHP Framework",
+  "keywords": [
+    "phalcon",
+    "framework",
+    "sample app"
+  ],
+  "homepage": "https://localhost:8910",
+  "authors": [
+    {
+      "name": "Jakub Kocum",
+      "email": "kocum.jakub@gmail.com",
+      "homepage": "https://github.com/",
+      "role": "Developer"
+    }
+  ],
+  "license": [
+    "LGPL-2.1-only",
+    "GPL-3.0-or-later"
+  ],
+  "require": {
+    "php": ">=7.2",
+    "ext-phalcon": "~4.0.0",
+    "tracy/tracy" :
+  }
+}

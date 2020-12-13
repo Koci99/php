@@ -1,0 +1,31 @@
+<center>
+<div class="page-header">
+    <h1>BitCoin price</h1>
+    <meta http-equiv="refresh" content="60">
+</div>
+
+<p>This page show bitcoin price one of 60 sec in USD and EUR</p>
+
+
+
+<?php
+//Debug report
+error_reporting(E_ALL);
+(new Phalcon\Debug)->listen();
+
+//var_dump($this->getParamsToView());
+
+echo '1 bitcoin = $'. $usd . ' USD<br>';
+echo '1 bitcoin = '. $eur . ' EUR<br>';
+
+echo PHP_EOL; //novy radek
+echo PHP_EOL; //novy radek
+
+echo $this->tag->linkTo(["index", "Back to main page", 'class' => 'btn btn-primary']);
+
+?>
+
+</center>
+
+
+

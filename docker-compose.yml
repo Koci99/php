@@ -1,0 +1,33 @@
+version: "3.9"
+services:
+
+  dbMysql:
+    image: mysql:8.0.22
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: tutorial
+      MYSQL_USER: tutorial
+      MYSQL_PASSWORD: tutorial
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./SQL/setup.sql:/docker-entrypoint-initdb.d/setup.sql
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+
+  web:
+    build: ./docker
+    ports:
+      - "8910:8910"
+    volumes:
+      - .:/app
+    environment:
+      FLASK_ENV: development
+
+  redis:
+    image: "redis:alpine"
