@@ -4,6 +4,7 @@ services:
   dbMysql:
     image: mysql:8.0.22
     restart: always
+    container_name: MySQL
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: tutorial

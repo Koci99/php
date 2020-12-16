@@ -4,8 +4,8 @@ use Phalcon\Session\Factory;
 
 $options = [
     'uniqueId'   => 'my-private-app',
-    'host'       => '127.0.0.1',
-    'port'       => 11211,
+    'host'       => 'dbMysql',
+    'port'       => 3306,
     'persistent' => true,
     'lifetime'   => 3600,
     'prefix'     => 'my_',
