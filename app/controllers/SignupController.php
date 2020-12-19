@@ -38,7 +38,7 @@ class SignupController extends Controller
         $user = new Users();
         $users = Users::find()->toArray();
         $userArray = $this->request->getPost();
-        if ($userArray['username'] == null || $userArray['email'] == null)
+        if ($userArray['name'] == null || $userArray['email'] == null)
         {
             echo "Please, fill user name and email.";
             echo "<br/>";
@@ -47,7 +47,7 @@ class SignupController extends Controller
         }
         else
         {
-            $user->username = $userArray['username'];
+            $user->username = $userArray['name'];
             $user->email = $userArray['email'];
         }
 
@@ -59,7 +59,7 @@ class SignupController extends Controller
             {
                 $find = true;
                 $this->session->set('user-name', $user->username);
-                $this->session->set('user-admin', $user->checkAdmin());
+                $this->session->set('user-admin', $user->checkAdmin($user->username,$user->email));
 
                 echo "User is sign up";
                 echo "<br/>";

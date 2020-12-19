@@ -8,6 +8,7 @@ RUN apt-get install -y php7.3-dev
 RUN pecl channel-update pecl.php.net
 RUN pecl install psr
 RUN echo extension=psr.so | tee -a /etc/php/7.3/cli/php.ini
+RUN apt-get install -y php-mysql
 RUN apt-get install curl
 RUN curl -s https://packagecloud.io/install/repositories/phalcon/stable/script.deb.sh | bash
 RUN apt-get install php7.3-phalcon
@@ -18,6 +19,7 @@ RUN mkdir /app
 VOLUME /app
 WORKDIR "/app"
 
+CMD composer install
 CMD ../root/.composer/vendor/phalcon/devtools/phalcon serve --port=8910
 
 EXPOSE 8910

@@ -9,21 +9,6 @@ class RegisterController extends ControllerBase
 
     }
 
-    private function checkUsers($name,$email)
-    {
-        $users = Users::find()->toArray();
-        $exists = false;
-
-        foreach ($users as $regUser)
-        {
-            if ($regUser['name'] == $name && $regUser['email'] == $email)
-            {
-                $exists = true;
-            }
-        }
-
-        return $exists;
-    }
 
     public function registerAction()
     {
@@ -33,7 +18,7 @@ class RegisterController extends ControllerBase
         $user->username = $userArray['name'];
         $user->email = $userArray['email'];
 
-        $exists = $this->checkUsers($user->username,$user->email);
+        $exists = $user->checkUsers($user->username,$user->email);
 
         if ($exists)
         {
@@ -52,7 +37,6 @@ class RegisterController extends ControllerBase
             echo $this->tag->linkTo(['/signup', 'Go back', 'class' => 'btn btn-primary']);
         } else {
             echo "Sorry, the following problems were generated: ";
-
             $messages = $user->getMessages();
 
             foreach ($messages as $message) {

@@ -22,7 +22,8 @@
   ],
   "require": {
     "php": ">=7.2",
-    "ext-phalcon": "~4.0.0",
-    "tracy/tracy" :
+    "ext-phalcon": "~4.1.0",
+    "tracy/tracy" : "2.8.*",
+    "vlucas/phpdotenv" : "5.*"
   }
 }

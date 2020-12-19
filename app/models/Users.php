@@ -8,11 +8,11 @@ class Users extends Model
     public $username;
     public $email;
 
-    public function checkAdmin() : bool
+    public function checkAdmin($name,$email) : bool
     {
         $admin = false;
 
-        if ($this->username == "admin" && $this->email == "admin@admin.com")
+        if ($name == "admin" && $email == "admin@admin.com")
         {
             echo "Admin is here" . "<br/>";
             $admin = true;
@@ -23,5 +23,21 @@ class Users extends Model
         }
 
         return $admin;
+    }
+
+    public function checkUsers($name,$email)
+    {
+        $users = Users::find()->toArray();
+        $exists = false;
+
+        foreach ($users as $regUser)
+        {
+            if ($regUser['name'] == $name && $regUser['email'] == $email)
+            {
+                $exists = true;
+            }
+        }
+
+        return $exists;
     }
 }

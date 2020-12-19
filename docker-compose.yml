@@ -1,17 +1,19 @@
-version: "3.9"
+version: "3.8"
 services:
 
   dbMysql:
-    image: mysql:8.0.22
+    image: mysql:${MYSQL_VERSION}
     restart: always
-    container_name: MySQL
+    container_name: ${MYSQL_HOST}
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: tutorial
-      MYSQL_USER: tutorial
-      MYSQL_PASSWORD: tutorial
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
       - "3306:3306"
+    command:
+      - "--default-authentication-plugin=mysql_native_password"
     volumes:
       - ./SQL/setup.sql:/docker-entrypoint-initdb.d/setup.sql
 
@@ -20,6 +22,10 @@ services:
     restart: always
     ports:
       - "8080:8080"
+    links:
+      - dbMysql
+    depends_on:
+      - dbMysql
 
   web:
     build: ./docker
@@ -29,6 +35,11 @@ services:
       - .:/app
     environment:
       FLASK_ENV: development
+    links:
+      - dbMysql
+    depends_on:
+      - dbMysql
+      - adminer
 
   redis:
     image: "redis:alpine"
