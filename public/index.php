@@ -5,8 +5,13 @@ use Phalcon\Di\FactoryDefault;
 use Phalcon\Mvc\View;
 use Phalcon\Mvc\Url as UrlProvider;
 use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
+use Tracy\Debugger;
 
+/**
+ * Debug from Phalcon
+*/
 error_reporting(E_ALL);
+(new Phalcon\Debug())->listen();
 
 define('BASE_PATH', dirname(__DIR__));
 define('APP_PATH', BASE_PATH . '/app');
@@ -30,6 +35,24 @@ try {
     include APP_PATH . '/config/router.php';
 
     /**
+     * Define root folder where is .env file and load AUTOLOAD
+    */
+    define('ENV_PATH', realpath('..'));
+    include ENV_PATH . '/vendor/autoload.php';
+
+    /**
+     * Load Environment variables
+    */
+    $dotenv = Dotenv\Dotenv::createImmutable(ENV_PATH);
+    $dotenv->load();
+
+    /**
+     * Enable Tracy debug
+    */
+    Debugger::enable(Debugger::DEVELOPMENT);
+    Debugger::$logSeverity = E_ALL;
+
+    /**
      * Get config service for use in inline setup below
      */
     $config = $di->getConfig();
@@ -38,6 +61,8 @@ try {
      * Include Autoloader
      */
     include APP_PATH . '/config/loader.php';
+
+
 
     /**
      * Handle the request

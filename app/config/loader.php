@@ -12,14 +12,4 @@ $loader->registerDirs(
     ]
 )->register();
 
-/**
- * Composer autoload
- */
-include __DIR__ . '/../../vendor/autoload.php';
-
-/**
- * Environment variables
- */
-$dotenv = new Dotenv\Dotenv(__DIR__ . '/../../');
-$dotenv->load();
 

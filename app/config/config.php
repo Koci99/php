@@ -10,10 +10,18 @@ defined('APP_PATH') || define('APP_PATH', BASE_PATH . '/app');
 return new \Phalcon\Config([
     'database' => [
         'adapter'     => 'Mysql',
-        'host'        => getenv('MYSQL_HOST'),
+        /*'host'        => getenv('MYSQL_HOST'),
         'username'    => getenv('MYSQL_USER'),
         'password'    => getenv('MYSQL_PASSWORD'),
-        'dbname'      => getenv('MYSQL_DATABASE'),
+        'dbname'      => getenv('MYSQL_DATABASE'),*/
+        /*'host'        => 'dbMysql',
+        'username'    => 'tutorial',
+        'password'    => 'tutorial',
+        'dbname'      => 'tutorial',*/
+        'host'        => $_ENV['MYSQL_HOST'],
+        'username'    => $_ENV['MYSQL_USER'],
+        'password'    => $_ENV['MYSQL_PASSWORD'],
+        'dbname'      => $_ENV['MYSQL_DATABASE'],
         'charset'     => 'utf8',
     ],
     'application' => [

@@ -47,6 +47,5 @@ class RegisterController extends ControllerBase
             echo $this->tag->linkTo(['/register', 'Go back', 'class' => 'btn btn-primary']);
         }
 
-        $this->view->disable();
     }
 }
